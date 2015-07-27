@@ -1,0 +1,239 @@
+$black: #000;
+$white: #FFF;
+$banana: #fad46b;
+$theblackflag: #364347;
+$firstblood: #cc0000;
+$strawberry: #f84545;
+$babyblue: #e1eef3;
+$gray: #f7f7f7;
+$darkgray: #5e5e5e;
+$lightgray: #a1a1a1;
+$verylightgray: #b2c6cd;
+$landlubber: #28948c;
+$overboard: #009dcd;
+ 
+$padding: 10px;
+$margin: 10px;
+$main-width: 1000px;
+ 
+$font-size: 16px;
+$font-family: 'Lato', sans-serif;
+$line-height: 1.4;
+ 
+$break-four: 1050px;
+$break-three: 760px;
+$break-two: 520px;
+$break-one: 360px;
+ 
+@import url('http://fonts.googleapis.com/css?family=Lato:300,400,700');
+@import url('normalize.css');
+
+.controlbar {
+    padding:.25rem;
+    width:100%;
+    background: #000;
+    min-height: 2rem;
+
+    .showBreakpoint { 
+        background: #333; 
+        color: #fff; 
+        border: none;
+        width: 240px;
+        float: right;
+        padding: 5px;
+    }
+}
+
+ 
+//clearfix - see http://nicolasgallagher.com/micro-clearfix-hack/
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+//Main styles
+* {
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+ 
+html, body, .wrap {
+    min-height: 100%;
+}
+ 
+body {
+    color: $black;
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: $line-height;
+    background: $white;
+}
+
+.sidebar {
+    width: 100%;
+    height: 100%;
+    padding-bottom:14%;
+    background-size: 20%;
+    
+    @media screen and (min-width: $break-three) {
+        float: left;
+        width: 20%;
+        background-size: 80%;
+    }
+    
+    
+    .my-info {
+        text-align: center;
+        padding: $padding*3 0;
+        
+        .portfolio-image {
+            border-radius: 50%;
+        }
+        
+        h1, h2 {
+            font-weight: normal;
+        }
+        
+        h1 {
+            font-size: 120%;
+        }
+        
+        h2 {
+            font-size: 110%;
+        }
+        
+    }
+    
+}
+// searchbar
+.searchbar {
+    text-align: center;
+}
+
+// menu lists
+ul {
+    list-style: none;
+    padding: 0;
+    display: none;
+    margin: 0 $margin*13.5 $margin;
+    text-align: left;
+
+    @media screen and (min-width: $break-three) {
+        margin: 0 0 0 $margin*2.5;
+        display: block;
+        width: auto;
+    }
+
+    &.open {
+        display: inline-block;
+        margin: 0 auto $margin $margin*6;
+
+        @media screen and (min-width: $break-three) {
+            margin: 0 0 0 $margin*2.5;
+            display: block;
+            width: auto;
+        }
+    }
+
+    li {
+        a {
+            color: $black;
+            text-decoration: none;
+            -webkit-transition: color 0.4s ease;
+            -moz-transition: color 0.4s ease;
+            -o-transition: color 0.4s ease;
+            -ms-transition: color 0.4s ease;
+            transition: color 0.4s ease;
+
+            &:hover, &.current-menu-item {
+                color: $strawberry;
+                -webkit-transition: color 0.4s ease;
+                -moz-transition: color 0.4s ease;
+                -o-transition: color 0.4s ease;
+                -ms-transition: color 0.4s ease;
+                transition: color 0.4s ease;
+            }
+        }
+    }
+}
+// left side menus
+.menus {
+    text-align: center;
+    color: $black;
+
+    @media screen and (min-width: $break-three) {
+        padding: $padding*2 $padding*3;
+    }
+
+    h3 {
+        text-transform: uppercase;
+        font-size: 100%;
+        font-weight: normal;
+        padding-left: $padding*3;
+        cursor: pointer;
+        width: 20%;
+        margin: $margin*2 $margin*11 $margin;
+
+        @media screen and (min-width: $break-one) {
+            margin: $margin*2 auto $margin*2;
+        }
+
+        @media screen and (min-width: $break-three) {
+            margin: $margin*2 0 $margin 0;
+        }
+
+        &.works {
+            color: $black;
+
+            &:before {
+                width: 15px;
+                background-position: 0px 0px;
+            }
+        }
+
+        &.about {
+            color: $black;
+
+            &:before {
+                width: 17px;
+                background-position: -15px 0px;
+            }
+        }
+
+        &.shows {
+            color: $black;
+
+            &:before {
+                width: 17px;
+                background-position: -32px 0px;
+            }
+        }
+
+        &.admin {
+            color: $black;
+            border-top: 10px solid darken($gray, 10%);
+
+            &:before {
+                width: 17px;
+                background-position: -32px 0px;
+            }
+        }
+    }
+}
+
+// main content
+.content {
+    width: 100%;
+    min-height: 100%;
+    background: $white;
+    margin: $margin*2 0 $margin*2;
+
+    @media screen and (min-width: $break-three) {
+        float: left;
+        width: 80%;
+    }
+}
+
