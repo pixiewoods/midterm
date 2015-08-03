@@ -13,6 +13,7 @@
   <script src="https://code.angularjs.org/1.4.2/angular-route.min.js"></script>
   <script src="app/app.js"></script>
   <script src="app/controllers/galleryworkscontroller.js"></script>
+  <script src="app/controllers/galleryitemcontroller.js"></script>
   <script src="app/controllers/gallerywelcomecontroller.js"></script>
 
 </head>
@@ -21,16 +22,16 @@
   <main class="wrap group">
     <aside class="sidebar">
      <div class="my-info">
-      <img src="" alt="" class="">
+      <img src="images/corner_sm.png" alt="" class="">
       <h1>Art Gallery</h1>
       <h2>Welcome</h2>
     </div>
-    <nav class="menus">
+    <div class="menus">
       <h3 class="home"><a href="#/welcome">Home</a></h3>
       <h3 class="works"><a href="#/works">Works</a></h3>
       <h3 class="about"><a href="#">About</a></h3>
-      <h3 class="shows"><a href="#">Shows</a></h3>
-    </nav>
+      <h3 class="shows"><a href="#">Shows</a></h3 >
+    </div>
   </aside>
 
 <ng-view></ng-view>

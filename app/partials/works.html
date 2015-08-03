@@ -1,57 +1,28 @@
   <div class="content"> 
+    <div class="container-fluid">
 
- <!--  <div class="container-fluid"> -->
-    <div class="row row-eq-height">
-    <div  class="col-sm-4" ng-repeat="item in galleryItems " >
-    <div class="panel panel-default panel-default">
-      <div class="panel-heading"> 
-        {{ item.title }} 
-        <p class="item-date">{{ item.date_completed }}</p>
-      </div>
-      <div class="panel-body">
-        <p>{{ item.description }}</p>
-        <img class="img-responsive" ng-src="images/{{ item.imageurl }}" />
-        <p>Dimensions: {{ item.dimensions }}</p>
-      </div>
-      <div class="panel-footer">
-        <button type="button" ng-show="{{ item.sold == 'FALSE'}} " 
-          ng-click="buyWork(buywork)" class="btn btn-default btn-sm">Buy</button>       
-      </div>
-    </div>
-  </div>
-  </div>
-<!-- </div> -->
+      <div class="searchbar">
+        <p>Enter search criteria if you wish</p>
+        <input class="search" type="text" placeholder="Title" ng-model="searchForTitle" size="30"/>
+        <input class="search" type="text" placeholder="Year" ng-model="searchForYear" size="4"/>
+      </div>  
 
-<p>{{ galleryItems.length }} works displayed</p>
-
-    <div class="content">
-      <h3>Add a Gallery Item</h3>
-      <div class="panel panel-default panel-default">
-        <div class="alert alert-danger" ng-show="add_artwork_error">
-          {{add_artwork_error}}
-        </div>
-        <form name="add_galleryitem_form" novalidate>
-          <div class="panel-heading">
-            <input type="text" placeholder="title" size="30" ng-model="adding_galleryitem.title" />
-            <div>
-              <input type="text" placeholder="yyyy-mm-dd" size="50" ng-model="adding_galleryitem.date_completed" />
+      <div class="row row-eq-height">
+        <div  class="col-sm-4" ng-repeat="item in galleryItems | 
+            filter: {title: searchForTitle} | 
+            filter: {date_completed: searchForYear} | 
+            orderBy:'-date_completed' ">
+            <div class="panel panel-default panel-default">
+              <div class="panel-heading"> 
+                  <a href="#/works/{{ item.id }}">
+                    <span class="title">{{ item.title }}</span>
+              </div>
+              <div class="panel-body">
+                  <img class="img-responsive" ng-src="images/{{ item.imageurl }}"/>
+              </div>
             </div>
-          </div>
-          <div class="panel-body">
-            <input type="text" placeholder="medium" size="30" ng-model="adding_galleryitem.medium" />
-            <p>
-              <textarea placeholder="description" rows="4" ng-model="adding_galleryitem.description" ></textarea>
-            </p>
-            <input type="text" placeholder="Dimensions" size="10" ng-model="adding_galleryitem.dimensions" />
-            <input type="number" placeholder="0.00" size="10" ng-model="adding_galleryitem.price" />
-            <input type="text" placeholder="image url" size="30" ng-model="adding_galleryitem.imageurl" />
-            <input type="boolean" placeholder"false" size="10" ng-model="adding_galleryitem.sold" />
-          </div>
-          <div class="panel-footer">
-              <button type="button" ng-click="addGalleryItem(adding_galleryitem)" class="btn btn-default btn-sm">Add Artwork</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-
+  </div> 
 </div>

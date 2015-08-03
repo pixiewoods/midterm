@@ -56,86 +56,18 @@ body {
       font-size: 120%; }
     .sidebar .my-info h2 {
       font-size: 110%; }
+  .sidebar .menus {
+    text-align: center;
+    padding: 30px 0; }
+    .sidebar .menus h3 {
+      text-transform: uppercase;
+      font-size: 100%;
+      font-weight: normal;
+      cursor: pointer; }
 
 .searchbar {
-  text-align: center; }
-
-ul {
-  list-style: none;
-  padding: 0;
-  display: none;
-  margin: 0 135px 10px;
-  text-align: left; }
-  @media screen and (min-width: 760px) {
-    ul {
-      margin: 0 0 0 25px;
-      display: block;
-      width: auto; } }
-  ul.open {
-    display: inline-block;
-    margin: 0 auto 10px 60px; }
-    @media screen and (min-width: 760px) {
-      ul.open {
-        margin: 0 0 0 25px;
-        display: block;
-        width: auto; } }
-  ul li a {
-    color: #000;
-    text-decoration: none;
-    -webkit-transition: color 0.4s ease;
-    -moz-transition: color 0.4s ease;
-    -o-transition: color 0.4s ease;
-    -ms-transition: color 0.4s ease;
-    transition: color 0.4s ease; }
-    ul li a:hover, ul li a.current-menu-item {
-      color: #f84545;
-      -webkit-transition: color 0.4s ease;
-      -moz-transition: color 0.4s ease;
-      -o-transition: color 0.4s ease;
-      -ms-transition: color 0.4s ease;
-      transition: color 0.4s ease; }
-
-.menus {
-  text-align: center;
-  color: #000; }
-  @media screen and (min-width: 760px) {
-    .menus {
-      padding: 20px 30px; } }
-  .menus h3 {
-    text-transform: uppercase;
-    font-size: 100%;
-    font-weight: normal;
-    padding-left: 30px;
-    cursor: pointer;
-    width: 20%;
-    margin: 20px 110px 10px; }
-    @media screen and (min-width: 360px) {
-      .menus h3 {
-        margin: 20px auto 20px; } }
-    @media screen and (min-width: 760px) {
-      .menus h3 {
-        margin: 20px 0 10px 0; } }
-    .menus h3.works {
-      color: #000; }
-      .menus h3.works:before {
-        width: 15px;
-        background-position: 0px 0px; }
-    .menus h3.about {
-      color: #000; }
-      .menus h3.about:before {
-        width: 17px;
-        background-position: -15px 0px; }
-    .menus h3.shows {
-      color: #000; }
-      .menus h3.shows:before {
-        width: 17px;
-        background-position: -32px 0px; }
-    .menus h3.admin {
-      color: #000;
-      border-top: 10px solid #dedede; }
-      .menus h3.admin:before {
-        width: 17px;
-        background-position: -32px 0px; }
+  text-align: left;
+  padding: 0 0 2em 0; }
 
 .content {
   width: 100%;
