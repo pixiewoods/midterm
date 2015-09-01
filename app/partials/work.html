@@ -1,24 +1,39 @@
-<div class="alert alert-danger" ng-show="item_error_text">
-	{{ item_error_text }}
-</div>
+<div class="content">
+	<div class="container-fluid">
+		<div class="page-header">
+			<h2>Item Detail</h2>
+		</div>
 
-<div class="col-sm-6" ng-repeat="item in galleryItems">
-	<div class="panel panel-default panel-default">
-	   	<div class="panel-body">
-			<p>Title:     <span> {{ item.title }}</span></p>
-			<p>Date Completed: <span> {{ item.date_completed }}</span></p>
-			<p>Medium: <span> {{ item.medium }} </span></p>
-			<p>Dimensions: <span> {{ item.dimensions }} </span></p>
-			<p>Description: </span> {{ item.description }} </span></p>
-			<div class="buyitem" ng-show="item_for_sale">
-				<p>Price: <span> {{ item.price }} </span>
-				<div style="float:right">
-        			<button type="button" 
-          			ng-click="buyWork(buywork)" class="btn btn-default btn-sm">Buy</button>
-          		</div>
-  			</div>
+		<div class="alert alert-danger" ng-show="item_error_text">
+			{{ item_error_text }}
+		</div>
 
+		<div class="panel-group">
+			<div class="col-sm-6" ng-repeat="item in galleryItems">
+				<div class="panel panel-default panel-default">
+					<div class="panel-body">
+						<h2>Title:     <span> {{ item.title }}</span></h2>
+						<p>ID: <span> {{ item.id }}</span></p>
+						<p>Date Completed: <span> {{ item.date_completed }}</span></p>
+						<p>Medium: <span> {{ item.medium }} </span></p>
+						<p>Dimensions: <span> {{ item.dimensions }} </span></p>
+						<p>Description: </span> {{ item.description }} </span></p>
+						<div class="buyitem" ng-show="item_for_sale">
+							<p>Price: <span> {{ item.price }} </span>
+								<div style="float:right">
+									<button type="button" 
+									ng-click="buyWork(buywork)" class="btn btn-default btn-sm">Buy</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div>
+					<button type="button" ng-click="goBack()">Go Back</button>
+
+				</div>
+			</div>
 		</div>
 	</div>
-
 </div>

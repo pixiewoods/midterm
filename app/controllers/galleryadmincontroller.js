@@ -1,23 +1,48 @@
-galleryApp.controller('GalleryAdminController', function( $scope ) {
+galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray, FIREBASE_URL) {
 
-//  This controller is for future admin function.  Includes adding new gallery work.
+//  This controller is for admin functions.  View All Works.  Add New Items.
+    $scope.adding_galleryitem = {};
+    $scope.galleryItems= [];
 
+    var ref = new Firebase(FIREBASE_URL);
+    var postRef = ref.child('galleryItems');
+    $scope.galleryItems = $firebaseArray(postRef);
 
-	$scope.galleryItems= [
-	{id: '0001', medium: 'Acrylic Paint', dimensions: "9 x 11", sold: 'FALSE', price: "950.00", title: 'The Drinker', date_completed: '2015-04-01', description: '', imageurl: 'scott_d.png' },
-	{id: '0002', medium: 'Acrylic Paint', dimensions: "9 x 11", sold: 'FALSE', price: "850.00", title: 'Around the Corner', date_completed: '2015-04-15', description: '', imageurl: 'around_the_corner.png' },	
-	{id: '0003', medium: 'Oil', dimensions: "8 X 11", sold: 'FALSE', price: "250.00", title: 'Hope Gangloff Master Copy', date_completed: '2015-02-01', description: '', imageurl: 'hope_gangloff_knockoff.png' },	
-	{id: '0004', medium: 'Oil', dimensions: "45 x 20", sold: 'FALSE', price: "1050.00", title: 'Rachel', date_completed: '2015-02-01', description: '', imageurl: 'rachel.png' },
-	{id: '0005', medium: 'Charcoal', dimensions: "9 x 14", sold: 'FALSE', price: "600.00", title: 'Hands', date_completed: '2015-01-01', description: '', imageurl: 'hands.png' },
-	{id: '0006', medium: 'Pastel', dimensions: "9 x 14", sold: 'TRUE', price: "435.00", title: 'Bicycle', date_completed: '2013-02-01', description: '', imageurl: 'bicyclette.png' },
-	{id: '0007', medium: 'Sculpture', dimensions: "9 x 11", sold: 'FALSE', price: "1250.00", title: 'Blossom Head', date_completed: '2012-07-01', description: '', imageurl: 'sculpture_scarey.png' },
-	{id: '0008', medium: 'Sculpture', dimensions: "9 x 11", sold: 'TRUE', price: "350.00", title: 'Light', date_completed: '2012-07-01', description: '', imageurl: 'sculpture_light.png' },
-	{id: '0009', medium: 'Sculpture', dimensions: "9 x 11", sold: 'FALSE', price: "900.00", title: 'Torso', date_completed: '2012-03-01', description: '', imageurl: 'sculpture_torso.png' }				
-	]
+    var imageUpped;
+
+    $scope.mediumlist = [
+    { medium: 'Oil'},
+    { medium: 'Acrylic'},
+    { medium: 'Watercolor'},
+    { medium: 'Pencil'},
+    { medium: 'Charcoal'},
+    { medium: 'Pastel'},
+    { medium: 'Sculpture'}
+    ];
 
     $scope.add_galleryitem_error = "";
+    $scope.add_galleryitem_newID = "";
+
+    $scope.addImage = function( new_image ){
+      filepicker.setKey("AU5HVDKxsQYewUzKMZVmTz");
+
+      filepicker.pick(
+      {
+        mimetype: 'image/*',
+        container: 'window',
+        services: ['COMPUTER']
+      },
+      function(Blob){
+        console.log(JSON.stringify(Blob));
+        imageUpped = Blob.url;
+      },
+      function(FPerror){
+        console.log(FPerror.toString());
+      }
+    )};
 
     $scope.addGalleryItem = function( new_galleryitem ){
+    
     // if new_galleryitem is not defined
     if (typeof(new_galleryitem) === 'undefined') {
         // then add an error message to $scope and exit
@@ -31,7 +56,7 @@ galleryApp.controller('GalleryAdminController', function( $scope ) {
     }
     else if (!new_galleryitem.date_completed || new_galleryitem.date_completed.length <10 )
     {
-        $scope.add_galleryitem_error = "You must provide a date in format yyyy/mm/dd";
+        $scope.add_galleryitem_error = "You must provide a date in format yyyy-mm-dd";
     }
     else if (!new_galleryitem.medium)
     {
@@ -53,16 +78,63 @@ galleryApp.controller('GalleryAdminController', function( $scope ) {
     {
         $scope.add_galleryitem_error = "Missing description";
     }
-    else if (!new_galleryitem.imageurl)
-    {
-        $scope.add_galleryitem_error = "Missing image URL";
-    }
+    // else if (!new_galleryitem.imageurl)
+    // {
+    //     $scope.add_galleryitem_error = "Missing image URL";
+    // }
     else {
 
-    //  Code placeholder ...
-    //  Must find current max item ID and increment value to get unique ID for this item
+        //  Must find current max item ID and increment value to create unique ID for this item
 
-        $scope.galleryItems.push( new_galleryitem );
-        $scope.adding_galleryItem = {};
+        $scope.add_galleryitem_newID = "";
+        $scope.add_galleryitem_newID = getNewID();
+        
+        var pushRef = new Firebase(FIREBASE_URL + '/galleryItems');
+        pushRef.push({
+
+            id: $scope.add_galleryitem_newID,
+            title: new_galleryitem.title,
+            date_completed: new_galleryitem.date_completed,
+            medium: new_galleryitem.medium,
+            dimensions: new_galleryitem.dimensions,
+            sold: new_galleryitem.sold,
+            price: new_galleryitem.price,
+            description: new_galleryitem.description,
+            imageurl: imageUpped
+        });
+
+        $scope.adding_galleryitem = {};
+        $scope.add_galleryitem = {};
         $scope.add_galleryitem_error = "";
-    }
+        };
+    };
+
+    function getNewID () {
+        var nextID = null;
+        var maxID = null;
+        //console.log("gallery item array length is " + $scope.galleryItems.length);
+
+        for (var i = 0; i < $scope.galleryItems.length; i++) {
+            var item = $scope.galleryItems[i];
+            //console.log("current record is " + item);
+            //console.log("maxID is " + maxID);
+            if (maxID == null || Number(item.id) > maxID) {
+                //console.log("current item id is " +item.id);
+                maxID = Number(item.id);
+                //console.log("new maxID is " + maxID);
+            }
+        }
+        //console.log("last current record is " + item);
+        nextID = pad((Number(maxID)+1), 4);
+        //console.log("nextID is " + nextID);
+
+        return nextID;
+    };  
+
+    function pad(n, width, z) {
+        z = z || '0';
+        n = n + '';
+        return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+    };
+
+});

@@ -1,0 +1,14 @@
+{
+  "name": "Gallery",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "python -m SimpleHTTPServer 9000"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-sass": "^0.9.2",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}

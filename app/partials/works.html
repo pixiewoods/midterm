@@ -1,21 +1,31 @@
   <div class="content"> 
     <div class="container-fluid">
+      <div class="page-header">
+        <h2>Browse the Gallery</h2>
+      </div>
 
-      <div class="searchbar">
-        <p>Enter search criteria if you wish</p>
-        <input class="search" type="text" placeholder="Title" ng-model="searchForTitle" size="30"/>
-        <input class="search" type="text" placeholder="Year" ng-model="searchForYear" size="4"/>
-      </div>  
+      <form role="form">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" ng-model="searchForTitle" size="30" id="title"/>
+        </div>
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="text" ng-model="searchForDate" size="15" id="date"/>
+        </div>
+      </form> 
 
-      <div class="row row-eq-height">
-        <div  class="col-sm-4" ng-repeat="item in galleryItems | 
+      <div class="panel-group">
+        <div  class="col-sm-6" ng-repeat="item in galleryItems | 
             filter: {title: searchForTitle} | 
-            filter: {date_completed: searchForYear} | 
+            filter: {date_completed: searchForDate} | 
             orderBy:'-date_completed' ">
             <div class="panel panel-default panel-default">
               <div class="panel-heading"> 
                   <a href="#/works/{{ item.id }}">
                     <span class="title">{{ item.title }}</span>
+                    <p> {{ item.date_completed }}</p>
+                    <p> {{ item.id }}</p>
               </div>
               <div class="panel-body">
                   <img class="img-responsive" ng-src="images/{{ item.imageurl }}"/>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="galleryApp">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
@@ -10,23 +10,32 @@
   <script src="js/modernizr.js"></script> 
   <script src="https://code.angularjs.org/1.4.2/angular.min.js"></script>
   <script src="https://code.angularjs.org/1.4.2/angular-route.min.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+  <script type="text/javascript" src="//api.filepicker.io/v2/filepicker.js"></script>  
+
   <script src="app/app.js"></script>
   <script src="app/controllers/galleryworkscontroller.js"></script>
   <script src="app/controllers/galleryitemcontroller.js"></script>
-  <script src="app/controllers/gallerywelcomecontroller.js"></script>
+  <script src="app/controllers/galleryhomecontroller.js"></script>
   <script src="app/controllers/galleryadmincontroller.js"></script>
+  <script src="app/controllers/gallerylogincontroller.js"></script>
+  <script src="app/services/authentication.js"></script>
 </head>
 
-<body>
+<body ng-app="galleryApp">
+
+  <nav class="controlbar" ng-include="'app/partials/navigation.html'"></nav>  
+
   <main class="wrap group">
     <aside class="sidebar">
      <div class="my-info">
       <img src="images/corner_sm.png" alt="site logo">
-      <h1>Art Gallery</h1>
-      <h2>Welcome</h2>
+      <h1>Gallery</h1>
+      <h2>Discard Art</h2>    
     </div>
     <div class="menus">
-      <h3 class="home"><a href="#/welcome">Home</a></h3> 
+      <h3 class="home"><a href="#/home">Home</a></h3> 
       <h3 class="works"><a href="#/works">Works</a></h3>
       <h3 class="admin"><a href="#/admin">Admin</a></h3 >
     </div>

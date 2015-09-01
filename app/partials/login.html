@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <section class="login">
+    <div class="page-header">
+      <h2>Login</h2>
+    </div>
+
+    <form name="login_form" novalidate ng-submit="login()">
+
+      <div class="alert alert-danger" ng-show="login_error_text">
+        {{ login_error_text }}
+      </div>
+
+      <input type="email" name="email" placeholder="email" autofocus 
+      ng-required="true"
+      ng-model="user.email">
+
+      <input type="password" name="password" placeholder="password" 
+      ng-required="true"
+      ng-model="user.password">
+
+      <button type="submit" class="btn" 
+      ng-disabled="login_form.$invalid"
+      >Login</button>
+
+      <p>or <a href="#/register">Not Registered?  Sign Up</a></p>
+    </form>
+  </section>
+</div>

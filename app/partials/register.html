@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <section class="login">
+    <div class="page-header">
+      <h2>Register</h2>
+    </div>
+
+    <div class="alert alert-danger" ng-show="register_error_text">
+      {{ register_error_text }}
+    </div>
+
+    <form role="form" name="registration_form" novalidate ng-submit="register()">
+
+     <input type="firstname" name="firstname" placeholder="first name" autofocus 
+     ng-model="user.firstname">
+     <p class="error" ng-show="registration_form.firstname.$invalid && registration_form.firstname.$touched">Must enter a first name</p>
+
+     <input type="lastname" name="lastname" placeholder="last name" autofocus 
+     ng-model="user.lastname">
+     <p class="error" ng-show="registration_form.lastname.$invalid && registration_form.lastname.$touched">Must enter a last name</p>
+
+     <input type="email" name="email" placeholder="Email" autofocus 
+     ng-model="user.email">
+     <p class="error" ng-show="registration_form.email.$invalid && registration_form.email.$touched">Must enter a valid email</p>
+
+     <input type="password" name="password" placeholder="password" 
+     ng-model="user.password">
+
+     <p class="error" ng-show="registration_form.password.$invalid && registration_form.password.$touched">Must enter a password</p>
+
+     <button type="submit" class="btn" 
+     ng-disabled="registration_form.$invalid"
+     >Login</button>
+
+     <!-- <p>or <a href="#/register">Register</a></p> -->
+   </form>
+ </section>
+</div>
