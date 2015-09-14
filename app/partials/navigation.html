@@ -1,6 +1,8 @@
-<div class="list-inline">
-	<ul>
-		<li><a ng-href="#/cart">cart</a></li>
-		<li><a ng-href="#/login">login</a></li>
+<div>
+	<ul class="list-inline">
+		<li ng-show="firstname">{{ email }} : [ {{ role }} ]</li>
+		<li><a href="#/cart">cart</a></li>
+		<li><a ng-hide="firstname" href="#/login">login</a></li>
+		<li><a ng-show="firstname" href="#/logout">logout</a></li>
 	</ul>
 </div>

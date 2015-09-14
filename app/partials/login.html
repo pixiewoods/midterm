@@ -1,28 +1,43 @@
-<div class="container-fluid">
-  <section class="login">
-    <div class="page-header">
-      <h2>Login</h2>
-    </div>
-
-    <form name="login_form" novalidate ng-submit="login()">
-
-      <div class="alert alert-danger" ng-show="login_error_text">
-        {{ login_error_text }}
+<div class="content">
+  <div class="container-fluid">
+    <section class="login">
+      <div class="page-header">
+        <h3>Login</h3>
       </div>
 
-      <input type="email" name="email" placeholder="email" autofocus 
-      ng-required="true"
-      ng-model="user.email">
+      <form name="login_form" novalidate ng-submit="login()">
 
-      <input type="password" name="password" placeholder="password" 
-      ng-required="true"
-      ng-model="user.password">
+        <div>
+          <p class="alert alert-danger" ng-show="message">
+            {{ message }}</p>
 
-      <button type="submit" class="btn" 
-      ng-disabled="login_form.$invalid"
-      >Login</button>
+          <p class="alert alert-danger" ng-show="login_form.email.$invalid && login_form.email.$touched">You must enter a valid email address</p>
 
-      <p>or <a href="#/register">Not Registered?  Sign Up</a></p>
-    </form>
-  </section>
+          <p class="alert alert-danger" ng-show="login_form.password.$invalid && login_form.password.$touched">You must enter your password</p>
+        </div>
+
+        <div class="form-group">
+          <input type="email" name="email" placeholder="email" size="40" autofocus 
+          ng-required="true"
+          ng-model="user.email">
+        </div>
+
+        <div class="form-group">
+          <input type="password" name="password" placeholder="password" size="40"
+          ng-required="true"
+          ng-model="user.password">
+        </div>
+
+        <div class="form-group">
+          <input  type="submit" class="btn btn-default"
+          ng-disabled="login_form.$invalid" value="Login" />
+          <button  class="btn btn-default" type="button" ng-click="goBack()">Go Back</button>
+        </div>
+
+        <div class="form-group">
+          <p>or <a href="#/register">Not Registered?  Sign Up Here First</a></p>
+        </div>
+      </form>
+    </section>
+  </div>
 </div>

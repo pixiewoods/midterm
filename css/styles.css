@@ -1,13 +1,14 @@
-@import url("http://fonts.googleapis.com/css?family=Amatic+SC:400,700");
+@import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 @import url("normalize.css");
-.controlbar {
+nav {
   text-align: right;
-  padding: .25rem;
+  padding: 1rem;
   width: 100%;
+  float: right;
   background: #b2c6cd;
-  min-height: 2rem;
+  max-height: .25rem;
 }
-.controlbar .showBreakpoint {
+nav .showBreakpoint {
   background: #333;
   color: #fff;
   border: none;
@@ -16,7 +17,7 @@
   padding: 5px;
 }
 @media screen and (min-width: 760px) {
-  .controlbar {
+  nav {
     float: right;
     width: 100%;
   }
@@ -43,14 +44,10 @@ html, body, .wrap {
 body {
   color: #000;
   font-size: 16px;
-  font-family: "Amatic SC", cursive;
+  font-family: "Oxygen", sans-serif;
   line-height: 1.4;
   background: #FFF;
-}
-
-nav * {
-  display: inline-block;
-  margin-right: 20px;
+  padding-top: 50px;
 }
 
 .sidebar {
@@ -77,7 +74,7 @@ nav * {
   font-size: 3rem;
 }
 .sidebar .my-info h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 .sidebar .menus {
   text-align: center;
@@ -85,7 +82,7 @@ nav * {
 }
 .sidebar .menus h3 {
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 1.5rem;
   font-weight: normal;
   cursor: pointer;
 }
@@ -108,9 +105,16 @@ nav * {
   }
 }
 
-.panel-group {
-  height: 300px;
-  overflow: auth;
+.navbar {
+  background: #b2c6cd;
+  font-size: 1.25rem;
+}
+
+.home-image {
+  display: block;
+  margin: auto;
+  width: 100%;
+  text-align: center;
 }
 
 /*# sourceMappingURL=styles.css.map */

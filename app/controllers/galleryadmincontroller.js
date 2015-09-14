@@ -1,6 +1,26 @@
-galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray, FIREBASE_URL) {
+galleryApp.controller('galleryAdminController', 
+    function( $scope, $firebaseArray, $firebaseAuth, FIREBASE_URL, FILEPICKER_KEY, MediumService ) {
 
 //  This controller is for admin functions.  View All Works.  Add New Items.
+
+    var fpKey = FILEPICKER_KEY;
+    var refUser = new Firebase(FIREBASE_URL);
+    var authUser = $firebaseAuth(refUser);
+
+    authUser.$onAuth(function(authData){
+        if(authData !==null){
+            var userDataRef = new Firebase(FIREBASE_URL + '/users');
+            userDataRef.orderByChild("email").equalTo(authData.password.email)
+                .on("child_added", function(snapshot){
+                    $scope.lastname = snapshot.val().lastname;
+                    $scope.firstname = snapshot.val().firstname;
+                    $scope.role = snapshot.val().role;
+                    $scope.email = snapshot.val().email;
+                    $scope.$apply();
+            });
+        }
+    });
+
     $scope.adding_galleryitem = {};
     $scope.galleryItems= [];
 
@@ -10,21 +30,15 @@ galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray
 
     var imageUpped;
 
-    $scope.mediumlist = [
-    { medium: 'Oil'},
-    { medium: 'Acrylic'},
-    { medium: 'Watercolor'},
-    { medium: 'Pencil'},
-    { medium: 'Charcoal'},
-    { medium: 'Pastel'},
-    { medium: 'Sculpture'}
-    ];
+    $scope.mediumlist = MediumService.list();
+
 
     $scope.add_galleryitem_error = "";
     $scope.add_galleryitem_newID = "";
 
     $scope.addImage = function( new_image ){
-      filepicker.setKey("AU5HVDKxsQYewUzKMZVmTz");
+      //filepicker.setKey("AU5HVDKxsQYewUzKMZVmTz");
+      filepicker.setKey(fpKey);
 
       filepicker.pick(
       {
@@ -54,9 +68,9 @@ galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray
     {
         $scope.add_galleryitem_error = "Missing title";
     }
-    else if (!new_galleryitem.date_completed || new_galleryitem.date_completed.length <10 )
+    else if (!new_galleryitem.date_completed || !is_valid_date(new_galleryitem.date_completed))
     {
-        $scope.add_galleryitem_error = "You must provide a date in format yyyy-mm-dd";
+        $scope.add_galleryitem_error = "You must provide a date in format yyyy/mm/dd";
     }
     else if (!new_galleryitem.medium)
     {
@@ -78,10 +92,10 @@ galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray
     {
         $scope.add_galleryitem_error = "Missing description";
     }
-    // else if (!new_galleryitem.imageurl)
-    // {
-    //     $scope.add_galleryitem_error = "Missing image URL";
-    // }
+     else if (!imageUpped)
+     {
+         $scope.add_galleryitem_error = "Missing image URL";
+     }
     else {
 
         //  Must find current max item ID and increment value to create unique ID for this item
@@ -107,6 +121,13 @@ galleryApp.controller('galleryAdminController', function( $scope, $firebaseArray
         $scope.add_galleryitem = {};
         $scope.add_galleryitem_error = "";
         };
+    };
+    function is_valid_date(this_date) {
+        if (this_date.match(/^[0-9]{4,4}\-[0-9]{2,2}\-[0-9]{2,2}$/)) {
+            return true;
+        }   else {
+            return false;
+            };
     };
 
     function getNewID () {

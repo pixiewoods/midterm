@@ -1,4 +1,4 @@
-galleryApp.controller('galleryLoginController', 
+galleryApp.controller('galleryCartController', 
     function($scope, $location, FIREBASE_URL, $firebaseAuth, Authentication ){
 
     var refUser = new Firebase(FIREBASE_URL);
@@ -17,32 +17,12 @@ galleryApp.controller('galleryLoginController',
             });
         }
     });
-    
-    $scope.login = function() {
-        Authentication.login($scope.user)
-        .then(function(user){
-            $location.path("/home");
-        }).catch(function(error){
-            $scope.message = error.message;
-        });
- 	} 
 
-    $scope.register = function() {
-        Authentication.register($scope.user)
-        .then(function(user){
-            Authentication.login($scope.user);
-            $location.path("/login");
-        }).catch(function(error){
-            $scope.message = error.message;
-        });
- 	} 
-
-    $scope.logout = function() {
-        Authentication.logout($scope.user);
-    } 
+    $scope.shopping_cart_error = "Your cart is empty";
 
     $scope.goBack = function() {
-        window.history.back();
+            window.history.back();
     }
+
 
 });

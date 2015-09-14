@@ -12,9 +12,7 @@ $margin: 10px;
 $main-width: 1000px;
  
 $font-size: 16px;
-//$font-family: 'Lato', sans-serif;
-$font-family: 'Amatic SC', cursive;
-//$font-family: 'Open Sans Condensed', sans-serif;
+$font-family: 'Oxygen', sans-serif;
 
 $line-height: 1.4;
  
@@ -23,17 +21,16 @@ $break-three: 760px;
 $break-two: 520px;
 $break-one: 360px;
  
-//@import url('http://fonts.googleapis.com/css?family=Lato:300,400,700');
-@import url('http://fonts.googleapis.com/css?family=Amatic+SC:400,700');
-//@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+@import url(https://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 @import url('normalize.css');
 
-.controlbar {
+nav {
     text-align: right;
-    padding:.25rem;
+    padding: 1rem;
     width:100%;
+    float: right;
     background: $verylightgray;
-    min-height: 2rem;
+    max-height: .25rem;
 
     .showBreakpoint { 
         background: #333; 
@@ -43,9 +40,9 @@ $break-one: 360px;
         float: right;
         padding: 5px;
     }
-        @media screen and (min-width: $break-three) {
-        float: right;
-        width: 100%;
+       @media screen and (min-width: $break-three) {
+       float: right;
+       width: 100%;
     }
 }
 
@@ -74,12 +71,8 @@ body {
     font-family: $font-family;
     line-height: $line-height;
     background: $white;
+    padding-top: 50px;
 }
-nav * {
-    display: inline-block;
-    margin-right: 20px;
-}
-
 .sidebar {
     width: 100%;
     height: 100%;
@@ -105,7 +98,7 @@ nav * {
         }
         
         h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         
     }
@@ -116,7 +109,7 @@ nav * {
 
     h3 {
         text-transform: uppercase;
-        font-size: 3rem;
+        font-size: 1.5rem;
         font-weight: normal;
         cursor: pointer;
     }
@@ -126,7 +119,7 @@ nav * {
 .searchbar {
     text-align: left;
     padding: 0 0 2em 0;
-}
+} 
 // main content
 .content {
     width: 100%;
@@ -139,7 +132,13 @@ nav * {
         width: 80%;
     }
 }
-.panel-group {
-    height: 300px;
-    overflow: auth;
+.navbar {
+    background: $verylightgray;
+    font-size: 1.25rem;
+}    
+.home-image {
+    display: block;
+    margin: auto;
+    width: 100%;
+    text-align: center;   
 }

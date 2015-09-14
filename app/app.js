@@ -1,11 +1,20 @@
 var galleryApp = angular.module('galleryApp',['ngRoute','firebase'])
-	.constant('FIREBASE_URL', 'https://glaring-torch-8310.firebaseio.com/');
+	.constant('FIREBASE_URL', 'https://glaring-torch-8310.firebaseio.com/')
+	.constant('FILEPICKER_KEY', 'AU5HVDKxsQYewUzKMZVmTz');
+
 
 galleryApp.config(['$routeProvider', function($routeProvider){
 	$routeProvider
+
+	// Routes that do not require login
+
 	.when('/login', {
 		controller: 'galleryLoginController',
 		templateUrl: 'app/partials/login.html'})
+
+	.when('/logout', {
+		controller: 'galleryLoginController',
+		templateUrl: 'app/partials/logout.html'})
 
 	.when('/register',{
 		controller: 'galleryLoginController',
@@ -23,16 +32,24 @@ galleryApp.config(['$routeProvider', function($routeProvider){
        controller: 'galleryHomeController',
         templateUrl: 'app/partials/home.html'})
 
+	// Route that requires login
+
+		.when('/cart', {
+       controller: 'galleryCartController',
+        templateUrl: 'app/partials/cart.html'})
+
+
+	// Route that requires login and 'Admin' role
+
 	.when('/admin', {
 		controller: 'galleryAdminController',
 		templateUrl: 'app/partials/admin.html'})
-
-/*	.when("/about", {
-		controller: "AboutStubController",
-		template: "<div class=content><h2>About the Artist</h2></div>"})*/
-
+		//resolve: {
+		//	requiresLogin: true,
+		//	requiredRole:  ['Admin'] }})
 
 	.when('/', {
 		redirectTo: '/home'})
 
 }]);
+

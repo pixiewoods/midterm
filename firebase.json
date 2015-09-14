@@ -1,0 +1,9 @@
+{
+  "firebase": "glaring-torch-8310",
+  "public": "/Users/wendykambestad/Desktop/midterm",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}
