@@ -39,6 +39,7 @@ galleryApp.controller('galleryLoginController',
 
     $scope.logout = function() {
         Authentication.logout($scope.user);
+        $location.path("/home");
     } 
 
     $scope.goBack = function() {
